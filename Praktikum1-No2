@@ -1,0 +1,22 @@
+import sys
+
+# Mendefinisikan variabel integer sederhana
+int_var = 42
+
+# Mendefinisikan list yang berisi satu integer
+list_var = [42]
+
+# Mengukur ukuran memori dari masing-masing variabel
+size_int = sys.getsizeof(int_var)
+size_list = sys.getsizeof(list_var)
+
+# Menampilkan hasil pengukuran
+print(f"Ukuran memori integer (int_var): {size_int} bytes")
+print(f"Ukuran memori list (list_var): {size_list} bytes")
+
+#Penjelasan Tambahan
+print("Penjelasan Tambahan : ")
+print("Dari pengukuran, ukuran memori integer lebih kecil dibanding list berisi satu integer")
+print("List membutuhkan lebih banyak ruang karena menyimpan metadata dan referensi elemen,")
+print("sedangkan integer langsung menyimpan nilai.")
+print("Pemahaman ini penting untuk efisiensi memori saat mengelola data besar atau struktur kompleks.")
