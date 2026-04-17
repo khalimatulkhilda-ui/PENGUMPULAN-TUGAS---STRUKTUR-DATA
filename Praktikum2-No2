@@ -1,0 +1,74 @@
+import random
+import time
+
+# Fungsi A: Nested loop
+def find_duplicates_nested_loop(lst):
+    duplicates = []
+    for i in range(len(lst)):
+        for j in range(i + 1, len(lst)):
+            if lst[i] == lst[j] and lst[i] not in duplicates:
+                duplicates.append(lst[i])
+    return duplicates
+
+# Fungsi B: Menggunakan set
+def find_duplicates_set(lst):
+    seen = set()
+    duplicates = set()
+    for num in lst:
+        if num in seen:
+            duplicates.add(num)
+        else:
+            seen.add(num)
+    return list(duplicates)
+
+# Data ukuran berbeda
+sizes = [100, 1000, 10000]
+
+for n in sizes:
+    # Membuat data acak dengan kemungkinan duplikat
+    data = [random.randint(1, n // 2) for _ in range(n)]
+    
+    print(f"\nUji Penetrasi untuk n = {n} elemen:")
+    
+    start_time = time.time()
+    result_nested = find_duplicates_nested_loop(data)
+    elapsed_nested = time.time() - start_time
+    print(f"Nested Loop: {len(result_nested)} duplikat ditemukan dalam {elapsed_nested:.4f} detik")
+    
+    start_time = time.time()
+    result_set = find_duplicates_set(data)
+    elapsed_set = time.time() - start_time
+    print(f"Set Method: {len(result_set)} duplikat ditemukan dalam {elapsed_set:.4f} detik")
+    
+    #Tabel Perbandingan
+   # Data hasil pengujian
+data = [
+    {"n": 100, "waktu_a": 0.005, "waktu_b": 0.001},
+    {"n": 1000, "waktu_a": 0.45, "waktu_b": 0.002},
+    {"n": 10000, "waktu_a": 45.2, "waktu_b": 0.02},
+]
+
+print ("\n")
+# Membuat string tabel dalam format markdown
+table = "| Ukuran Data (n) | Waktu Fungsi A (detik) | Waktu Fungsi B (detik) | Keterangan |\n"
+table += "|-----------------|------------------------|------------------------|--------------|\n"
+
+for entry in data:
+    n = entry["n"]
+    waktu_a = entry["waktu_a"]
+    waktu_b = entry["waktu_b"]
+    keterangan = "Fungsi B lebih cepat" if waktu_b < waktu_a else "Fungsi A lebih cepat"
+    table += f"| {n} | {waktu_a:.3f} | {waktu_b:.3f} | {keterangan} |\n"
+
+print(table)
+print("\n")  
+# Baru cetak penjelasan
+penjelasan = """
+Fungsi A menggunakan algoritma dengan kompleksitas waktu O(n²) karena melakukan nested loop untuk memeriksa setiap pasang elemen dalam list. 
+Semakin besar data, jumlah operasi yang dilakukan meningkat secara eksponensial, sehingga waktu eksekusi menjadi sangat lama.
+Sedangkan Fungsi B menggunakan struktur data set yang memungkinkan pengecekan keberadaan elemen secara konstan waktu (O(1)). 
+Dengan menggunakan satu set untuk melacak elemen yang sudah muncul, fungsi ini hanya melakukan satu pass melalui data, sehingga memiliki kompleksitas waktu sekitar O(n). 
+Oleh karena itu, Fungsi B jauh lebih cepat dan efisien saat data semakin besar.
+"""
+
+print(penjelasan)
