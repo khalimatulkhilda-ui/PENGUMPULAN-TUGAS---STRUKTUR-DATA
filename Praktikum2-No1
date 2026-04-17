@@ -1,0 +1,42 @@
+# Fungsi A: Menggunakan nested loop (O(n^2))
+def find_duplicates_nested_loop(lst):
+    duplicates = []
+    for i in range(len(lst)):
+        for j in range(i + 1, len(lst)):
+            if lst[i] == lst[j] and lst[i] not in duplicates:
+                duplicates.append(lst[i])
+    return duplicates
+
+# Fungsi B: Menggunakan set untuk melacak angka yang sudah muncul (O(n))
+def find_duplicates_set(lst):
+    seen = set()
+    duplicates = set()
+    for num in lst:
+        if num in seen:
+            duplicates.add(num)
+        else:
+            seen.add(num)
+    return list(duplicates)
+
+# Contoh data
+list_data = [1, 2, 3, 2, 4, 5, 1]
+
+# Menampilkan hasil dengan fungsi nested loop
+hasil_nested = find_duplicates_nested_loop(list_data)
+print("Hasil dari fungsi nested loop:", hasil_nested)
+
+# Menampilkan hasil dengan fungsi set
+hasil_set = find_duplicates_set(list_data)
+print("Hasil dari fungsi set:", hasil_set)
+
+#Penjelasan Tambahan
+print ("Fungsi A :")
+print ("Menggunakan dua loop bersarang,")
+print ("setiap elemen dibandingkan dengan semua elemen setelahnya.")
+print ("ika ditemukan duplikat dan belum tercatat, angka tersebut dimasukkan ke daftar hasil.")
+
+print ("Fungsi B :")
+print ("Menggunakan set untuk melacak angka yang sudah muncul.")
+print ("Saat iterasi, jika angka sudah ada di set seen, berarti angka tersebut duplikat dan dimasukkan ke set duplicates.")
+print ("Setelah selesai, set duplicates diubah ke list dan dikembalikan.")
+print ("Pendekatan ini lebih efisien, karena hanya satu kali iterasi dan operasi pencarian di set biasanya O(1), sehingga total kompleksitas O(n).")
