@@ -1,0 +1,25 @@
+# Membuat list a dengan beberapa elemen
+a = [1, 2, 3]
+
+# Meng-assign list a ke list b
+b = a
+
+# Menampilkan isi list a dan b sebelum perubahan
+print("Sebelum perubahan:")
+print("a:", a)
+print("b:", b)
+
+# Mengubah isi list a
+a[0] = 99
+
+# Menampilkan isi list a dan b setelah perubahan
+print("\nSetelah mengubah a[0] = 99:")
+print("a:", a)
+print("b:", b)
+
+#Penjelasan Tambahan
+print ("# Penjelasan tambahan:")
+print ("Karena a dan b adalah alias dari objek list yang sama,")
+print ("perubahan apapun yang dilakukan melalui salah satu variabel akan langsung terlihat dari variabel lainnya.")
+print ("Jika kita ingin membuat salinan berbeda agar perubahan tidak mempengaruhi satu sama lain,")
+print ("kita bisa menggunakan a.copy() atau a[:] untuk membuat salinan baru.")
